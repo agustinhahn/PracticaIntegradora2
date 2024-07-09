@@ -23,6 +23,9 @@ const usersSchema = new Schema({
     type: String,
     required: true,
   },
+  cart: {
+    type: String,
+  },
   role: {
     type: String,
     default: "user",
