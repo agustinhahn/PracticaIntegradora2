@@ -30,6 +30,19 @@ export default class UserController extends Controllers {
     }
   };
 
+  infoSession = async (req, res, next) => {
+    try {
+      res.json({
+        session: req.session,
+        sessionId: req.sessionID,
+        cookies: req.cookies,
+      });
+    } catch (error) {
+      next(error)
+    }
+
+  };
+
   profile = (req, res, next) => {
     try {
       if (req.user) {
@@ -42,5 +55,33 @@ export default class UserController extends Controllers {
       next(error);
     }
   };
+
+  githubResponse = async(req,res,next)=>{
+    try {
+      console.log(req.user)
+      const { first_name, last_name, email, role } = req.user;
+      res.json({
+        msg: 'LOGIN WITH GITHUB OK!',
+        user: {
+          first_name,
+          last_name,
+          email,
+          role
+        }
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  logout = (req,res,next)=>{
+    try {
+      console.log(req.session)
+      req.session.destroy()
+      res.send("session destroy")
+    } catch (error) {
+      next(error)
+    }
+  }
 
 };

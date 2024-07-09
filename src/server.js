@@ -9,6 +9,7 @@ import passport from "passport"
 import MongoStore from "connect-mongo"
 import session from "express-session"
 import "./passport/local-strategy.js"
+import "./passport/github-strategy.js"
 
 const mainRouter = new MainRouter()
 
